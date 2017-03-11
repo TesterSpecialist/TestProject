@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../extras/jmeter-results-detail-report_21.xsl"?>
+<testResults version="1.2">
+<httpSample t="117" lt="116" ts="1481816065890" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="123" lt="123" ts="1481816194799" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="2781" ng="1" na="1"/>
+
+<httpSample t="105" lt="104" ts="1481816279076" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="121" lt="121" ts="1481816521732" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="120" lt="120" ts="1481816604435" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="2781" ng="1" na="1"/>
+
+<httpSample t="122" lt="122" ts="1481816708043" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="2781" ng="1" na="1"/>
+
+<httpSample t="123" lt="122" ts="1481816834859" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="112" lt="112" ts="1481816894999" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="110" lt="109" ts="1481816986176" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="116" lt="115" ts="1481817070587" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="102" lt="101" ts="1481817201019" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="108" lt="108" ts="1481818691973" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="102" lt="101" ts="1481818751514" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="112" lt="111" ts="1481819120858" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="109" lt="108" ts="1481819326186" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+<httpSample t="123" lt="122" ts="1481819768721" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+</testResults>

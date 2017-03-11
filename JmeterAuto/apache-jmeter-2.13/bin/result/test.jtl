@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../extras/jmeter-results-detail-report_21.xsl"?>
+<testResults version="1.2">
+<httpSample t="126" lt="125" ts="1481815655738" s="true" lb="request baidu" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="8697" ng="1" na="1"/>
+
+</testResults>

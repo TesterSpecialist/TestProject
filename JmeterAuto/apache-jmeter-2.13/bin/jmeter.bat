@@ -21,47 +21,17 @@ rem
 rem   JMETER_BIN - JMeter bin directory (must end in \)
 rem   JM_LAUNCH - java.exe (default) or javaw.exe
 rem   JVM_ARGS - additional java options, e.g. -Dprop=val
-rem   JM_START - set this to "start" to launch JMeter in a separate window
-rem              this is used by the jmeterw.cmd script.
 rem
 rem   =====================================================
 
-setlocal
-
-rem Minimal version to run JMeter
-set MINIMAL_VERSION=1.6.0
-
-for /f "tokens=3" %%g in ('java -version 2^>^&1 ^| findstr /i "version"') do (
-    rem @echo Debug Output: %%g
-    set JAVAVER=%%g
-)
-if not defined JAVAVER (
-    @echo Not able to find Java executable or version. Please check your Java installation.
-    set ERRORLEVEL=2
-    goto pause
-)
-set JAVAVER=%JAVAVER:"=%
-for /f "delims=. tokens=1-3" %%v in ("%JAVAVER%") do (
-    set current_minor=%%w
-)
-
-for /f "delims=. tokens=1-3" %%v in ("%MINIMAL_VERSION%") do (
-    set minimal_minor=%%w
-)
-
-if not defined current_minor (
-    @echo Not able to find Java executable or version. Please check your Java installation.
-    set ERRORLEVEL=2
-    goto pause
-)
-rem @echo Debug: CURRENT=%current_minor% - MINIMAL=%minimal_minor%
-if %current_minor% LSS %minimal_minor% (
-    @echo Error: Java version -- %JAVAVER% -- is too low to run JMeter. Needs a Java version greater than or equal to %MINIMAL_VERSION%
-    set ERRORLEVEL=3
-    goto pause
-)
-
 if .%JM_LAUNCH% == . set JM_LAUNCH=java.exe
+
+if not "%OS%"=="Windows_NT" goto win9xStart
+:winNTStart
+@setlocal
+
+rem Need to check if we are using the 4NT shell...
+if "%eval[2+2]" == "4" goto setup4NT
 
 if exist jmeter.bat goto winNT1
 if .%JMETER_BIN% == . set JMETER_BIN=%~dp0
@@ -69,6 +39,27 @@ if .%JMETER_BIN% == . set JMETER_BIN=%~dp0
 :winNT1
 rem On NT/2K grab all arguments at once
 set JMETER_CMD_LINE_ARGS=%*
+goto doneStart
+
+:setup4NT
+set JMETER_CMD_LINE_ARGS=%$
+goto doneStart
+
+:win9xStart
+rem Slurp the command line arguments.  This loop allows for an unlimited number of 
+rem arguments (up to the command line limit, anyway).
+
+set JMETER_CMD_LINE_ARGS=
+
+:setupArgs
+if %1a==a goto doneStart
+set JMETER_CMD_LINE_ARGS=%JMETER_CMD_LINE_ARGS% %1
+shift
+goto setupArgs
+
+:doneStart
+rem This label provides a place for the argument list loop to break out 
+rem and for NT handling to skip to.
 
 rem The following link describes the -XX options:
 rem http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html
@@ -81,13 +72,7 @@ set HEAP=-Xms512m -Xmx512m
 set NEW=-XX:NewSize=128m -XX:MaxNewSize=128m
 set SURVIVOR=-XX:SurvivorRatio=8 -XX:TargetSurvivorRatio=50%
 set TENURING=-XX:MaxTenuringThreshold=2
-rem Java 8 remove Permanent generation, don't settings the PermSize
-if %current_minor% LEQ "8" (
-    rem Increase MaxPermSize if you use a lot of Javascript in your Test Plan :
-    set PERM=-XX:PermSize=64m -XX:MaxPermSize=128m
-)
-
-set CLASS_UNLOAD=-XX:+CMSClassUnloadingEnabled
+set PERM=-XX:PermSize=64m -XX:MaxPermSize=128m -XX:+CMSClassUnloadingEnabled
 rem set DEBUG=-verbose:gc -XX:+PrintTenuringDistribution
 
 rem Always dump on OOM (does not cost anything unless triggered)
@@ -108,7 +93,7 @@ rem set DDRAW=%DDRAW% -Dsun.java2d.ddscale=true
 
 rem Server mode
 rem Collect the settings defined above
-set ARGS=%DUMP% %HEAP% %NEW% %SURVIVOR% %TENURING% %PERM% %CLASS_UNLOAD% %DDRAW%
+set ARGS=%DUMP% %HEAP% %NEW% %SURVIVOR% %TENURING% %PERM% %DDRAW%
 
 %JM_START% %JM_LAUNCH% %ARGS% %JVM_ARGS% -jar "%JMETER_BIN%ApacheJMeter.jar" %JMETER_CMD_LINE_ARGS%
 
@@ -124,4 +109,3 @@ echo errorlevel=%ERRORLEVEL%
 pause
 
 :end
-

@@ -231,7 +231,6 @@ The full set of properties that affect result file output is shown below.
 #jmeter.save.saveservice.subresults=true
 #jmeter.save.saveservice.assertions=true
 #jmeter.save.saveservice.latency=true
-#jmeter.save.saveservice.connect_time=false
 #jmeter.save.saveservice.samplerData=false
 #jmeter.save.saveservice.responseHeaders=false
 #jmeter.save.saveservice.requestHeaders=false
@@ -240,7 +239,7 @@ The full set of properties that affect result file output is shown below.
 #jmeter.save.saveservice.url=false
 #jmeter.save.saveservice.filename=false
 #jmeter.save.saveservice.hostname=false
-#jmeter.save.saveservice.thread_counts=true
+#jmeter.save.saveservice.thread_counts=false
 #jmeter.save.saveservice.sample_count=false
 #jmeter.save.saveservice.idle_time=false
 
@@ -631,11 +630,6 @@ latency - time to first response
 
 
 <li>
-connect - time to establish connection
-</li>
-
-
-<li>
 encoding
 </li>
 
@@ -920,18 +914,6 @@ Latency = time to initial response (milliseconds) - not all samplers support thi
 <tr>
 <td bgcolor="#a0ddf0"   valign="top" align="left">
 <font color="#000000" size="-1" face="arial,helvetica,sanserif">
-ct
-</font>
-</td>
-<td bgcolor="#a0ddf0"   valign="top" align="left">
-<font color="#000000" size="-1" face="arial,helvetica,sanserif">
-Connect Time = time to establish the connection (milliseconds) - not all samplers support this
-</font>
-</td>
-</tr>
-<tr>
-<td bgcolor="#a0ddf0"   valign="top" align="left">
-<font color="#000000" size="-1" face="arial,helvetica,sanserif">
 na
 </font>
 </td>
@@ -1205,12 +1187,12 @@ e.g. a spreadsheet or text editor.
 <tr>
 <td>
 <font color="#525D76" size="-1"><em>
-Copyright &copy; 1999-2015, Apache Software Foundation
+Copyright &copy; 1999-2013, Apache Software Foundation
 </em></font>
 </td>
 <td align="right">
 <font color="#525D76" size="-1"><em>
-$Id: listeners.xml 1664761 2015-03-06 23:39:59Z pmouawad $
+$Id: listeners.xml 1509908 2013-08-02 23:13:11Z milamber $
 </em></font>
 </td>
 </tr>
@@ -1228,7 +1210,6 @@ trademarks of the Apache Software Foundation.
 </body>
 </html>
 <!-- end the processing -->
-
 
 
 

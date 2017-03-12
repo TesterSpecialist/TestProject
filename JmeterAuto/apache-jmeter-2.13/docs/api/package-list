@@ -80,6 +80,13 @@ org.apache.jmeter.protocol.system.gui
 org.apache.jmeter.protocol.tcp.config.gui
 org.apache.jmeter.protocol.tcp.control.gui
 org.apache.jmeter.protocol.tcp.sampler
+org.apache.jmeter.report
+org.apache.jmeter.report.engine
+org.apache.jmeter.report.gui
+org.apache.jmeter.report.gui.action
+org.apache.jmeter.report.gui.tree
+org.apache.jmeter.report.writers
+org.apache.jmeter.report.writers.gui
 org.apache.jmeter.reporters
 org.apache.jmeter.reporters.gui
 org.apache.jmeter.sampler
@@ -101,8 +108,6 @@ org.apache.jmeter.timers.gui
 org.apache.jmeter.util
 org.apache.jmeter.util.keystore
 org.apache.jmeter.visualizers
-org.apache.jmeter.visualizers.backend
-org.apache.jmeter.visualizers.backend.graphite
 org.apache.jmeter.visualizers.gui
 org.apache.jmeter.visualizers.utils
 org.apache.jorphan.collections

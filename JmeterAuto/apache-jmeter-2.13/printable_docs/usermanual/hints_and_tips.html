@@ -145,23 +145,9 @@ You can use these to determine the correct property setting to change the loggin
 
 It is sometimes very useful to see Log messages to debug dynamic scripting languages like BeanShell or
 groovy used in JMeter.
-Since version 2.6, you can view log messages directly in JMeter GUI, to do so:
-
-<ul>
-
-
-<li>
-use menu Options > Log Viewer, a log console will appear at the bottom of the interface
-</li>
-
-
-<li>
-Or click on the Warning icon in the upper right corner of GUI
-</li>
-
-
-</ul>
-
+Since 2.6, you can view log messages directly in JMeter GUI, to do so, use menu Options > Log Viewer,
+a log console will appear at the bottom of the interface.
+Note that log messages are cleared each time you disable this option.
 By default this log console is disabled, you can enable it by changing in jmeter.properties:
 
 <ul>
@@ -169,19 +155,6 @@ By default this log console is disabled, you can enable it by changing in jmeter
 
 <li>
 jmeter.loggerpanel.display=true
-</li>
-
-
-</ul>
-
-
-To avoid using too much memory, this components limits the number of characters used by this panel:
-
-<ul>
-
-
-<li>
-jmeter.loggerpanel.maxlength=80000
 </li>
 
 
@@ -240,42 +213,6 @@ Regexp : Is text to search a regexp, if so Regexp will be searched in Tree of co
 </td></tr>
 <tr><td><br></td></tr>
 </table>
-<table border="0" cellspacing="0" cellpadding="2" width="100%">
-<tr><td bgcolor="#828DA6">
-<font color="#ffffff" face="arial,helvetica,sanserif">
-<a name="toolbar"><strong>21.4 Toolbar icons size</strong></a>
-</font>
-</td></tr>
-<tr><td>
-<blockquote>
-<description>
-
-    
-<p>
-
-You can change the size of icons in the toolbar using the property 
-<pre>
-jmeter.toolbar.icons.size
-</pre>
- with these values: 22x22 (default size), 32x32 or 48x48.
-    
-</p>
-
-
-</description>
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='296' height='95' src="../../docs/images/screenshots/icons-22x22.jpg"/><br>
-<font size="-1">Icons with the size 22x22.
-</font></td></tr></table></p>
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='300' height='106' src="../../docs/images/screenshots/icons-32x32.jpg"/><br>
-<font size="-1">Icons with the size 32x32.
-</font></td></tr></table></p>
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='365' height='120' src="../../docs/images/screenshots/icons-48x48.jpg"/><br>
-<font size="-1">Icons with the size 48x48.
-</font></td></tr></table></p>
-</blockquote>
-</td></tr>
-<tr><td><br></td></tr>
-</table>
 </blockquote>
 </p>
 </td></tr>
@@ -306,7 +243,7 @@ jmeter.toolbar.icons.size
 <tr>
 <td>
 <font color="#525D76" size="-1"><em>
-Copyright &copy; 1999-2015, Apache Software Foundation
+Copyright &copy; 1999-2013, Apache Software Foundation
 </em></font>
 </td>
 <td align="right">
@@ -329,7 +266,6 @@ trademarks of the Apache Software Foundation.
 </body>
 </html>
 <!-- end the processing -->
-
 
 
 

@@ -22,9 +22,7 @@
 <link rel="stylesheet" type="text/css" href="../../docs/css/style.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
 <meta name="author" value="Martin Ramshaw">
-<meta name="email" value="mramshaw at alumni.concordia.ca">
-<meta name="author" value="Philippe Mouawad">
-<meta name="email" value="p.mouawad at ubik-ingenierie.com">
+<meta name="email" value="mramshaw@alumni.concordia.ca">
 
 <title>Apache JMeter - User's Manual: My boss wants me to...</title>
 </head>
@@ -63,7 +61,7 @@
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td bgcolor="#525D76">
 <font color="#ffffff" face="arial,helvetica,sanserif">
-<a name="boss"><strong>17. Help! My boss wants me to load test our application!</strong></a></font>
+<a name="boss"><strong>17. Help! My boss wants me to load test our web app!</strong></a></font>
 </td></tr>
 <tr><td>
 <blockquote>
@@ -195,6 +193,7 @@ test
     while the second requires some knowledge of the application).
     It is not uncommon to discover problems with the application
     during this process, so be prepared to defend your work.
+    
 </p>
 </blockquote>
 </td></tr>
@@ -246,45 +245,12 @@ configuration in your published benchmarks.
 
 </p>
 <p>
-<b>
-When you need a lot of machines or want to test the network latency, Cloud can help you.
-</b>
-
-JMeter can easily be installed on Cloud instances as it runs on nearly any architecture available in the Cloud.
-JMeter is also supported within Commercial Cloud PAAS if you don't want to manage it yourself. 
-
-</p>
-<p>
-Don't forget JMeter batch (NON-GUI) mode. This mode should be used during load testing for many reasons:
-
-<ul>
-
-
-<li>
-If you have a powerful server that supports Java but perhaps does not have a fast graphics implementation, or where you need to login remotely.
-</li>
-
-
-<li>
+Don't forget JMeter batch mode. This can be useful if you have a powerful server 
+that supports Java but perhaps does not have a fast graphics implementation,
+or where you need to login remotely.
 Batch (non-GUI) mode can reduce the network traffic compared with using a remote display or client-server mode.
-</li>
-
-
-<li>
-Java AWT Thread used for GUI mode can alter injection behaviour by blocking sometimes
-</li>
-
-
-</ul>
-
 The batch log file can then be loaded into JMeter on a workstation for analysis, or you can
 use CSV output and import the data into a spreadsheet.
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>Remember GUI mode is for Script creation and debugging, not for load testing
-</td></tr>
-</table>
 </p>
 </blockquote>
 </td></tr>
@@ -381,69 +347,38 @@ you
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td bgcolor="#828DA6">
 <font color="#ffffff" face="arial,helvetica,sanserif">
-<a name="plugins"><strong>17.5 How can I enhance JMeter ?</strong></a>
+<a name="products"><strong>17.5 What other products are there ?</strong></a>
 </font>
 </td></tr>
 <tr><td>
 <blockquote>
 <p>
-There a lot of open-source and commercial plugins that can enhance JMeter, let's mention here the main open-source ones:
+There are a number of commercial products, which generally have fairly
+hefty pricetags. If you can justify it, these are probably the way to go.
+If, however, these products do not do exactly what you want, or you are on a
+limited budget, the following are worth a look. In fact, you should probably
+start by trying the Apache 
+<b>
+ab
+</b>
+ tool, as it may very well do the job
+if your requirements are not particularly complicated.
 
 </p>
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td bgcolor="#828DA6">
 <font color="#ffffff" face="arial,helvetica,sanserif">
-<a name="jmeter-plugins"><strong>17.5.1 JMeter-Plugins</strong></a>
+<a name="ab"><strong>17.5.1 Apache 'ab' tool</strong></a>
 </font>
 </td></tr>
 <tr><td>
 <blockquote>
 <p>
-This 
-<a href="http://jmeter-plugins.org/" target="_blank">
-non official project
-</a>
- is THE companion to core JMeter.
-<br>
 
-
-    It provides many useful extensions, among which:
-    
-<ul>
-
-    
-<li>
-Active Threads Over Time Graph Listener
-</li>
-
-    
-<li>
-Response Times vs Threads Graph Listener
-</li>
-
-    
-<li>
-Transaction Throughput vs Threads Graph Listener
-</li>
-
-    
-<li>
-GraphGenerator listener to create graphs at end of a load test
-</li>
-
-    
-<li>
-Selenium WebDriver Sampler
-</li>
-
-     
-<li>
-....
-</li>
-
-    
-</ul>
- 
+    You should definitely start with this one. It handles HTTP 'get' requests
+    very well, and can be made to handle HTTP 'post' requests with a little
+    effort. Written in 'C', it performs very well, and offers good (if basic)
+    performance reporting.
     
 </p>
 </blockquote>
@@ -453,17 +388,22 @@ Selenium WebDriver Sampler
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td bgcolor="#828DA6">
 <font color="#ffffff" face="arial,helvetica,sanserif">
-<a name="jmeter-maven-plugin"><strong>17.5.2 JMeter Plugin for Maven</strong></a>
+<a name="httpunit"><strong>17.5.2 HttpUnit</strong></a>
 </font>
 </td></tr>
 <tr><td>
 <blockquote>
 <p>
-This 
-<a href="http://jmeter.lazerycode.com/" target="_blank">
-non official plugin
-</a>
- allows you to run your automated JMeter tests through Maven.
+
+    This is worth a look. It is a library (and therefore of more interest to
+    developers) that can be used to perform HTTP tests/benchmarks. It is
+    intended to be used instead of a web browser (therefore no GUI) in
+    conjunction with 
+<b>
+JUnit
+</b>
+.
+    
 </p>
 </blockquote>
 </td></tr>
@@ -472,23 +412,17 @@ non official plugin
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td bgcolor="#828DA6">
 <font color="#ffffff" face="arial,helvetica,sanserif">
-<a name="jmeter-performance-plugin"><strong>17.5.3 JMeter Performance Plugin</strong></a>
+<a name="WAS"><strong>17.5.3 Microsoft WAS</strong></a>
 </font>
 </td></tr>
 <tr><td>
 <blockquote>
 <p>
-This 
-<a href="https://wiki.jenkins-ci.org/display/JENKINS/Performance+Plugin" target="_blank">
-non official plugin
-</a>
- allows you to capture reports from JMeter and JUnit.
-<br>
 
-
-        Jenkins will generate graphic charts with the trend report of performance and robustness.
-        It includes the feature of setting the final build status as good, unstable or failed, based on the reported error percentage.
-        
+    This is definitely worth a look. It has an excellent user interface
+    but it may not do exactly what you want. If this is the case, be aware
+    that the functionality of this product is not likely to change.
+    
 </p>
 </blockquote>
 </td></tr>
@@ -497,17 +431,22 @@ non official plugin
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td bgcolor="#828DA6">
 <font color="#ffffff" face="arial,helvetica,sanserif">
-<a name="jmeter-ec2"><strong>17.5.4 JMeter plugin for AWS</strong></a>
+<a name="JMeter"><strong>17.5.4 JMeter</strong></a>
 </font>
 </td></tr>
 <tr><td>
 <blockquote>
 <p>
-This 
-<a href="https://github.com/oliverlloyd/jmeter-ec2" target="_blank">
-non official plugin
-</a>
- automates running Apache JMeter on Amazon EC2
+
+    If you have non-standard requirements, then this solution offers an
+    open-source community to provide them (of course, if you are reading
+    
+<u>
+this
+</u>
+, you are probably already committed to this one). This
+    product is free to evolve along with your requirements.
+    
 </p>
 </blockquote>
 </td></tr>
@@ -557,6 +496,12 @@ cookies, URL-encoding, and URL-rewriting). In addition Java gives you automatic
 garbage-collection, and byte-code level security.
 
 </p>
+<p>
+And once Microsoft moves to a CLR (common language run-time) a Windows Java
+solution will not be any slower than any other type of solution on the Windows
+platform.
+
+</p>
 </blockquote>
 </td></tr>
 <tr><td><br></td></tr>
@@ -591,12 +536,12 @@ garbage-collection, and byte-code level security.
 <tr>
 <td>
 <font color="#525D76" size="-1"><em>
-Copyright &copy; 1999-2015, Apache Software Foundation
+Copyright &copy; 1999-2013, Apache Software Foundation
 </em></font>
 </td>
 <td align="right">
 <font color="#525D76" size="-1"><em>
-$Id: boss.xml 1664853 2015-03-07 14:17:55Z pmouawad $
+$Id: boss.xml 1457581 2013-03-17 22:58:08Z sebb $
 </em></font>
 </td>
 </tr>
@@ -614,7 +559,6 @@ trademarks of the Apache Software Foundation.
 </body>
 </html>
 <!-- end the processing -->
-
 
 
 

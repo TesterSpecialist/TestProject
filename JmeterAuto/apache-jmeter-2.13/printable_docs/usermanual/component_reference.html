@@ -143,8 +143,6 @@
 <a href="#Transaction_Controller">Transaction Controller</a></li>
 <li>
 <a href="#Recording_Controller">Recording Controller</a></li>
-<li>
-<a href="#Critical_Section_Controller">Critical Section Controller</a></li>
 </ul>
 <li><a href="#listeners">18.3 Listeners</a></li>
 <ul>
@@ -188,8 +186,6 @@
 <a href="#Generate_Summary_Results">Generate Summary Results</a></li>
 <li>
 <a href="#Comparison_Assertion_Visualizer">Comparison Assertion Visualizer</a></li>
-<li>
-<a href="#Backend_Listener">Backend Listener</a></li>
 </ul>
 </ul></td><td valign="top"><ul>
 <li><a href="#config_elements">18.4 Configuration Elements</a></li>
@@ -198,8 +194,6 @@
 <a href="#CSV_Data_Set_Config">CSV Data Set Config</a></li>
 <li>
 <a href="#FTP_Request_Defaults">FTP Request Defaults</a></li>
-<li>
-<a href="#DNS_Cache_Manager">DNS Cache Manager</a></li>
 <li>
 <a href="#HTTP_Authorization_Manager">HTTP Authorization Manager</a></li>
 <li>
@@ -644,7 +638,7 @@ Or, instead of manually adding HTTP Requests, you may want to use
         
 <p>
 <b>
-There are two different test elements used to define the samplers:
+There are two different screens for defining the samplers:
 </b>
 
         
@@ -684,7 +678,7 @@ HTTPClient4 - uses Apache HttpComponents HttpClient 4.x.
 
         
 <li>
-Blank Value - does not set implementation on HTTP Samplers, so relies on HTTP Request Defaults if present or on jmeter.httpsampler property defined in jmeter.properties
+Blank Value - does not set implementationon HTTP Samplers, so relies on HTTP Request Defaults if present or on jmeter.httpsampler property defined in jmeter.properties
 </li>
 
         
@@ -729,21 +723,11 @@ It does not support virtual hosts.
 </li>
 
          
-<li>
-It does not support the following methods: COPY, LOCK, MKCOL, MOVE, PATCH, PROPFIND, PROPPATCH, UNLOCK, REPORT, MKCALENDAR.
-</li>
-
-         
-<li>
-It does not support client based certificate testing with Keystore Config.
-</li>
-
-         
 </ul>
 
          
 <p>
-Note: the FILE protocol is intended for testing purposes only.
+Note: the FILE protocol is intended for testing puposes only. 
          It is handled by the same code regardless of which HTTP Sampler is used.
 </p>
 
@@ -885,11 +869,11 @@ No
 <tr>
 <td>Response Timeout</td>
 <td>Response Timeout. Number of milliseconds to wait for a response. 
-        Note that this applies to each wait for a response. If the server response is sent in several chunks, the overall
+        Note that this appplies to each wait for a response. If the server response is sent in several chunks, the overall
         elapsed time may be longer than the timeout.
         A 
 <a href="../usermanual/component_reference.html#Duration_Assertion">Duration Assertion</a>
- can be used to detect responses that take too long to complete.
+ can be used to detect overlong responses.
         
 </td>
 <td>
@@ -952,9 +936,7 @@ No
 </tr>
 <tr>
 <td>Method</td>
-<td>GET, POST, HEAD, TRACE, OPTIONS, PUT, DELETE, PATCH (not supported for
-        JAVA implementation). With HttpClient4, the following methods related to WebDav are also allowed: COPY, LOCK, MKCOL, MOVE,
-        PROPFIND, PROPPATCH, UNLOCK, REPORT, MKCALENDAR.
+<td>GET, POST, HEAD, TRACE, OPTIONS, PUT, DELETE, PATCH (not supported for JAVA implementation)
 </td>
 <td>
 Yes
@@ -1176,7 +1158,7 @@ No
 <tr>
 <td>MIME Type</td>
 <td>MIME type (for example, text/plain).
-        If it is a POST or PUT or PATCH request and either the 'name' attribute (below) are omitted or the request body is
+        If it is a POST or PUT or PATCH request and either the 'name' atribute (below) are omitted or the request body is
         constructed from parameter values only, then the value of this field is used as the value of the
         content-type request header.
         
@@ -1318,8 +1300,7 @@ No
 <br>
 
 
-        This property is used to enable IP Spoofing.
-        It override the default local IP address for this sample.
+        Override the default local IP address for this sample.
         The JMeter host must have multiple IP addresses (i.e. IP aliases, network interfaces, devices).
         The value can be a host name, IP address, or a network interface device such as "eth0" or "lo" or "wlan0".
 <br>
@@ -1605,52 +1586,6 @@ httpclient3.retrycount=3
 
 
 </p>
-<p>
-
-
-<b>
-Note: Certificates does not conform to algorithm constraints
-</b>
-<br>
-
-
-You may encounter the following error: 
-<i>
-java.security.cert.CertificateException: Certificates does not conform to algorithm constraints
-</i>
-
- if you run a HTTPS request on a web site with a SSL certificate (itself or one of SSL certificates in its chain of trust) with a signature
- algorithm using MD2 (like md2WithRSAEncryption) or with a SSL certificate with a size lower than 1024 bits.
-
-</p>
-<p>
-
-This error is related to increased security in Java 7 version u16 (MD2) and version u40 (Certificate size lower than 1024 bits), and Java 8 too.
-
-</p>
-<p>
-
-To allow you to perform your HTTPS request, you can downgrade the security of your Java installation by editing 
-the Java 
-<b>
-jdk.certpath.disabledAlgorithms
-</b>
- property. Remove the MD2 value or the constraint on size, depending on your case.
-
-</p>
-<p>
-
-This property is in this file:
-
-<pre>
-JAVA_HOME/jre/lib/security/java.security
-</pre>
-
-See  
-<a href="https://issues.apache.org/bugzilla/show_bug.cgi?id=56357">Bug 56357</a>
- for details.
-
-</p>
 <p><b>See Also:</b>
 <ul>
 <li><a href="test_plan.html#assertions">Assertion</a></li>
@@ -1782,7 +1717,7 @@ Select Statement
 
             
 <li>
-Update Statement - use this for Inserts and Deletes as well
+Update Statement - use this for Inserts as well
 </li>
 
             
@@ -1797,7 +1732,7 @@ Prepared Select Statement
 
             
 <li>
-Prepared Update Statement - use this for Inserts and Deletes as well
+Prepared Update Statement - use this for Inserts as well
 </li>
 
             
@@ -1834,6 +1769,7 @@ Edit - this should be a variable reference that evaluates to one of the above
 <tr><td>
             When "Prepared Select Statement", "Prepared Update Statement" or "Callable Statement" types are selected, a Statement Cache per connection is used by JDBC Request. 
             It stores by default up to 100 PreparedStatements per connection, this can impact your database (Open Cursors). 
+            This can be changed by defining the property "jdbcsampler.nullmarker".
             
 </td></tr>
 </table>
@@ -1998,36 +1934,6 @@ No
 <code>
 columnValue = vars.getObject("resultObject").get(0).get("Column Name");
 </code>
-
-        
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Handle ResultSet</td>
-<td>Defines how ResultSet returned from callable statements be handled:
-            
-<ul>
-
-                
-<li>
-Store As String (default) - All variables on Variable Names list are stored as strings, will not iterate through a ResultSets when present on the list.
-</li>
-
-                
-<li>
-Store As Object - Variables of ResultSet type on Variables Names list will be stored as Object and can be accessed in subsequent tests/scripts and iterated, will not iterate through the ResultSet 
-</li>
-
-                
-<li>
-Count Records - Variables of ResultSet types will be iterated through showing the count of records as result. Variables will be stored as Strings.
-</li>
-
-            
-</ul>
 
         
 </td>
@@ -3469,7 +3375,7 @@ Yes
 <tr><td>
 <center>
 <h2>
-(Beta Code)
+(Alpha Code)
 </h2>
 </center>
 <p>
@@ -3534,33 +3440,23 @@ HTTPSampler. The servername, port and get images are set by AccessLogSampler. Ne
 the parser is called with integer 1, telling it to parse one entry. After that,
 HTTPSampler.sample() is called to make the request.
 
-<div align="left">
-<table cellspacing="4" cellpadding="0" border="0">
-<tr>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-<tr>
-<td bgcolor="#023264" width="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#ffffff"><pre>
-samp = (HTTPSampler) GENERATOR.generateRequest();
-samp.setDomain(this.getDomain());
-samp.setPort(this.getPort());
-samp.setImageParser(this.isImageParser());
-PARSER.parse(1);
-res = samp.sample();
-res.setSampleLabel(samp.toString());
-</pre></td>
-<td bgcolor="#023264" width="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-<tr>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-</table>
-</div>
+<code>
+
+
+<pre>
+
+            samp = (HTTPSampler) GENERATOR.generateRequest();
+            samp.setDomain(this.getDomain());
+            samp.setPort(this.getPort());
+            samp.setImageParser(this.isImageParser());
+            PARSER.parse(1);
+            res = samp.sample();
+            res.setSampleLabel(samp.toString());
+
+</pre>
+
+
+</code>
 
 The required methods in LogParser are:
 
@@ -4029,7 +3925,7 @@ lib
 <p>
 <table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
 <tr><td>
-        The BSF API has been largely superseded by JSR-223, which is included in Java 6 onwards.
+        The BSF API has been largely superseded by JSR-223, which is included in Java 1.6 onwards.
         Most scripting languages now include support for JSR-223; please use the JSR223 Sampler instead.
         The BSF Sampler should only be needed for supporting legacy languages/test scripts.
         
@@ -4772,7 +4668,7 @@ No
 
     
 <p><b>Control Panel</b></p>
-<div align="center"><img width='854' height='796' src="../../docs/images/screenshots/jmspublisher.png"/></div>
+<div align="center"><img width='946' height='776' src="../../docs/images/screenshots/jmspublisher.png"/></div>
 <p>
 <b>Parameters</b>
 <table border="1" cellspacing="0" cellpadding="2">
@@ -4848,28 +4744,6 @@ No
 <tr>
 <td>Password</td>
 <td>Password (N.B. this is stored unencrypted in the test plan)
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Expiration</td>
-<td>
-      The expiration time (in milliseconds) of the message before it becomes obsolete.
-      If you do not specify an expiration time, the default value is 0 (never expires). 
-  
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Priority</td>
-<td>
-      The priority level of the message. There are ten priority levels from 0 (lowest) to 9 (highest). 
-      If you do not specify a priority level, the default level is 4. 
-  
 </td>
 <td>
 No
@@ -5454,7 +5328,7 @@ JMSSampler.useSecurity.properties=false
 
     
 <p><b>Control Panel</b></p>
-<div align="center"><img width='882' height='804' src="../../docs/images/screenshots/jms/JMS_Point-to-Point.png"/></div>
+<div align="center"><img width='924' height='797' src="../../docs/images/screenshots/jms/JMS_Point-to-Point.png"/></div>
 <p>
 <b>Parameters</b>
 <table border="1" cellspacing="0" cellpadding="2">
@@ -5639,33 +5513,10 @@ Yes
 <td>
       The timeout in milliseconds for the reply-messages. If a reply has not been received within the specified
       time, the specific testcase failes and the specific reply message received after the timeout is discarded.
-      Default value is 2000 ms.
   
 </td>
 <td>
 Yes
-</td>
-</tr>
-<tr>
-<td>Expiration</td>
-<td>
-      The expiration time (in milliseconds) of the message before it becomes obsolete.
-      If you do not specify an expiration time, the default value is 0 (never expires). 
-  
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Priority</td>
-<td>
-      The priority level of the message. There are ten priority levels from 0 (lowest) to 9 (highest). 
-      If you do not specify a priority level, the default level is 4. 
-  
-</td>
-<td>
-No
 </td>
 </tr>
 <tr>
@@ -5751,132 +5602,71 @@ The current implementation supports standard Junit convention and extensions. It
 includes extensions like oneTimeSetUp and oneTimeTearDown. The sampler works like the
 JavaSampler with some differences.
 
-<ul>
+<br>
 
+1. rather than use Jmeter's test interface, it scans the jar files for classes extending junit's TestCase class. That includes any class or subclass.
 
-<li>
-rather than use Jmeter's test interface, it scans the jar files for classes extending junit's TestCase class. That includes any class or subclass.
-</li>
+<br>
 
+2. Junit test jar files should be placed in jmeter/lib/junit instead of /lib directory.
+In versions of JMeter after 2.3.1, you can also use the "user.classpath" property to specify where to look for TestCase classes. 
 
-<li>
-Junit test jar files should be placed in jmeter/lib/junit instead of /lib directory.
-In versions of JMeter after 2.3.1, you can also use the "user.classpath" property to specify where to look for TestCase classes.
-</li>
+<br>
 
+3. Junit sampler does not use name/value pairs for configuration like the JavaSampler. The sampler assumes setUp and tearDown will configure the test correctly.
 
-<li>
-Junit sampler does not use name/value pairs for configuration like the JavaSampler. The sampler assumes setUp and tearDown will configure the test correctly.
-</li>
+<br>
 
+4. The sampler measures the elapsed time only for the test method and does not include setUp and tearDown.
 
-<li>
-The sampler measures the elapsed time only for the test method and does not include setUp and tearDown.
-</li>
+<br>
 
+5. Each time the test method is called, Jmeter will pass the result to the listeners.
 
-<li>
-Each time the test method is called, Jmeter will pass the result to the listeners.
-</li>
+<br>
 
+6. Support for oneTimeSetUp and oneTimeTearDown is done as a method. Since Jmeter is multi-threaded, we cannot call oneTimeSetUp/oneTimeTearDown the same way Maven does it.
 
-<li>
-Support for oneTimeSetUp and oneTimeTearDown is done as a method. Since Jmeter is multi-threaded, we cannot call oneTimeSetUp/oneTimeTearDown the same way Maven does it.
-</li>
+<br>
 
-
-<li>
-The sampler reports unexpected exceptions as errors.
+7. The sampler reports unexpected exceptions as errors.
 There are some important differences between standard JUnit test runners and JMeter's
 implementation. Rather than make a new instance of the class for each test, JMeter
 creates 1 instance per sampler and reuses it.
 This can be changed with checkbox "Create a new instance per sample".
-</li>
+<br>
 
 
-</ul>
-
-The current implementation of the sampler will try to create an instance using the string constructor first. If the test class does not declare a string constructor, the sampler will look for an empty constructor. Example below:
-
-<a name="junit_constructor_example"/>
-<p><b>Junit Constructors</b></p>
-
-Empty Constructor:
-
-<pre>
-
-public class myTestCase {
-  public myTestCase() {}
-}
-
-</pre>
-
-String Constructor:
-
-<pre>
-
-public class myTestCase {
-  public myTestCase(String text) {
-    super(text);
-  }
-}
-
-</pre>
-
-
-
-By default, Jmeter will provide some default values for the success/failure code and message. Users should define a set of unique success and failure codes and use them uniformly across all tests.
-
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-
-<h3>
+The current implementation of the sampler will try to create an instance using the string constructor first. If the test class does not declare a string constructor, the sampler will look for an empty constructor. Example below:<br>
+<br>
+Empty Constructor:<br>
+public class myTestCase {<br>
+  public myTestCase() {}<br>
+}<br>
+<br>
+String Constructor:<br>
+public class myTestCase {<br>
+  public myTestCase(String text) {<br>
+    super(text);<br>
+  }<br>
+}<br>
+By default, Jmeter will provide some default values for the success/failure code and message. Users should define a set of unique success and failure codes and use them uniformly across all tests.<br>
 General Guidelines
-</h3>
+<br>
+
 
 If you use setUp and tearDown, make sure the methods are declared public. If you do not, the test may not run properly.
 
 <br>
 
 
-Here are some general guidelines for writing Junit tests so they work well with Jmeter. Since Jmeter runs multi-threaded, it is important to keep certain things in mind.
-
-<ul>
-
-
-<li>
-Write the setUp and tearDown methods so they are thread safe. This generally means avoid using static memebers.
-</li>
-
-
-<li>
-Make the test methods discrete units of work and not long sequences of actions. By keeping the test method to a descrete operation, it makes it easier to combine test methods to create new test plans.
-</li>
-
-
-<li>
-Avoid making test methods depend on each other. Since Jmeter allows arbitrary sequencing of test methods, the runtime behavior is different than the default Junit behavior.
-</li>
-
-
-<li>
-If a test method is configurable, be careful about where the properties are stored. Reading the properties from the Jar file is recommended.
-</li>
-
-
-<li>
-Each sampler creates an instance of the test class, so write your test so the setup happens in oneTimeSetUp and oneTimeTearDown.
-</li>
-
-
-</ul>
-
-
-</td></tr>
-</table>
-</p>
-
+Here are some general guidelines for writing Junit tests so they work well with Jmeter. Since Jmeter runs multi-threaded, it is important to keep certain things in mind.<br>
+<br>
+1. Write the setUp and tearDown methods so they are thread safe. This generally means avoid using static memebers.<br>
+2. Make the test methods discrete units of work and not long sequences of actions. By keeping the test method to a descrete operation, it makes it easier to combine test methods to create new test plans.<br>
+3. Avoid making test methods depend on each other. Since Jmeter allows arbitrary sequencing of test methods, the runtime behavior is different than the default Junit behavior.<br>
+4. If a test method is configurable, be careful about where the properties are stored. Reading the properties from the Jar file is recommended.<br>
+5. Each sampler creates an instance of the test class, so write your test so the setup happens in oneTimeSetUp and oneTimeTearDown.
 
 <p><b>Control Panel</b></p>
 <div align="center"><img width='397' height='536' src="../../docs/images/screenshots/junit_sampler.png"/></div>
@@ -6172,14 +5962,6 @@ Yes
 </td>
 </tr>
 <tr>
-<td>Fetch headers only</td>
-<td>If selected, only the message headers will be retrieved.
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
 <td>Delete messages from the server</td>
 <td>If set, messages will be deleted after retrieval
 </td>
@@ -6438,7 +6220,7 @@ Use a local truststore. With this option the certificate chain will be validated
 
 
 <p><b>Control Panel</b></p>
-<div align="center"><img width='825' height='728' src="../../docs/images/screenshots/smtp_sampler.png"/></div>
+<div align="center"><img width='713' height='802' src="../../docs/images/screenshots/smtp_sampler.png"/></div>
 <p>
 <b>Parameters</b>
 <table border="1" cellspacing="0" cellpadding="2">
@@ -6460,22 +6242,6 @@ Yes
 <td>Port to be used to connect to the server.
 Defaults are: SMTP=25, SSL=465, StartTLS=587
 
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Connection timeout</td>
-<td>Connection timeout value in milliseconds (socket level). Default is infinite timeout.
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Read timeout</td>
-<td>Read timeout value in milliseconds (socket level). Default is infinite timeout.
 </td>
 <td>
 No
@@ -6855,8 +6621,6 @@ No
 <tr>
 <td>Timeout</td>
 <td>Timeout for command in milliseconds, defaults to 0, which means NO timeout.
-If the timeout expires before the command finishes, JMeter will attempt to kill the OS process.
-
 </td>
 <td>
 No
@@ -6877,6 +6641,11 @@ No
 </font>
 </td></tr>
 <tr><td>
+<center>
+<h2>
+(Alpha Code)
+</h2>
+</center>
 <p>
 This sampler lets you send an Request to a MongoDB.
 </p>
@@ -8752,78 +8521,6 @@ No
 <tr><td><br></td></tr>
 </table>
 <hr>
-<table border="0" cellspacing="0" cellpadding="2">
-<tr><td>
-<font face="arial,helvetica,sanserif">
-<h3>
-<a name="Critical_Section_Controller">18.2.17 Critical Section Controller</a>
-</h3>
-</font>
-</td></tr>
-<tr><td>
-
-
-<p>
-The Critical Section Controller ensures that its children elements (samplers/controllers, etc) will be executed
-by only one thread as a named lock will be taken before executing children of controller.
-</p>
-
-
-<p><b>Control Panel</b></p>
-<div align="center"><img width='469' height='129' src="../../docs/images/screenshots/logic-controller/critical-section-controller.png"/></div>
-<p>
-
-    The figure below shows an example of using Critical Section Controller, in the figure below 2 Critical Section Controllers ensure
-    that:
-    
-<ul>
-
-        
-<li>
-DS2-${__threadNum} is executed only by one thread at a time
-</li>
-
-        
-<li>
-DS4-${__threadNum} is executed only by one thread at a time
-</li>
-
-    
-</ul>
-
-
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='248' height='241' src="../../docs/images/screenshots/logic-controller/critical-section-controller-tp.png"/><br>
-<font size="-1">Test Plan using Critical Section Controller
-</font></td></tr></table></p>
-
-
-</p>
-<p>
-<b>Parameters</b>
-<table border="1" cellspacing="0" cellpadding="2">
-<tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
-<tr>
-<td>Lock Name</td>
-<td>Lock that will be taken by controller, ensure you use different lock names for unrelated sections
-</td>
-<td>
-Yes
-</td>
-</tr>
-</table>
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-Critical Section Controller takes locks only within one JVM, so if using Distributed testing ensure your use case does not rely on all threads of all JVMs blocking.
-
-</td></tr>
-</table>
-</p>
-</td></tr>
-<tr><td><br></td></tr>
-</table>
-<hr>
 <a href="#">
 ^
 </a>
@@ -9259,9 +8956,6 @@ Throughput - plot the number of samples per unit of time
 The individual figures at the bottom of the display are the current values. 
  "Latest Sample" is the current elapsed sample time, shown on the graph as "Data".
 </p>
-<p>
-The value displayed on the top left of graph is the max of 90th percentile of response time.
-</p>
 </td></tr>
 <tr><td><br></td></tr>
 </table>
@@ -9305,7 +8999,7 @@ This needs to be borne in mind when comparing graphs.
 
 
 <p><b>Control Panel</b></p>
-<div align="center"><img width='737' height='489' src="../../docs/images/screenshots/spline_visualizer.png"/></div>
+<div align="center"><img width='581' height='440' src="../../docs/images/screenshots/spline_visualizer.png"/></div>
 </td></tr>
 <tr><td><br></td></tr>
 </table>
@@ -9342,7 +9036,7 @@ Assertions
 are part of the test plan.
 </p>
 <p><b>Control Panel</b></p>
-<div align="center"><img width='954' height='365' src="../../docs/images/screenshots/assertion_results.png"/></div>
+<div align="center"><img width='658' height='277' src="../../docs/images/screenshots/assertion_results.png"/></div>
 <p><b>See Also:</b>
 <ul>
 <li><a href="../usermanual/component_reference.html#Response_Assertion">Response Assertion</a>
@@ -9746,66 +9440,14 @@ th
 percentile
 </a>
 ) values requires additional memory.
+For JMeter 2.3.4 and earlier, details of each sample were saved separately, which meant a lot of memory was needed.
 JMeter now combines samples with the same elapsed time, so far less memory is used.
 However, for samples that take more than a few seconds, the probability is that fewer samples will have identical times,
 in which case more memory will be needed.
-Note you can use this listener afterwards to reload a CSV or XML results file which is the recommended way to avoid performance impacts.
 See the 
 <a href="../usermanual/component_reference.html#Summary_Report">Summary Report</a>
  for a similar Listener that does not store individual samples and so needs constant memory.
 
-</p>
-
-
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-Starting with JMeter 2.12, you can configure the 3 percentile values you want to compute, this can be done by setting properties:
-
-<ul>
-
-    
-<li>
-aggregate_rpt_pct1: defaults to 90
-<sup>
-th
-</sup>
- 
-<a href="glossary.html#Percentile">
-percentile
-</a>
-</li>
-
-    
-<li>
-aggregate_rpt_pct2: defaults to 95
-<sup>
-th
-</sup>
- 
-<a href="glossary.html#Percentile">
-percentile
-</a>
-</li>
-
-    
-<li>
-aggregate_rpt_pct3: defaults to 99
-<sup>
-th
-</sup>
- 
-<a href="glossary.html#Percentile">
-percentile
-</a>
-</li>
-
-
-</ul>
-
-
-</td></tr>
-</table>
 </p>
 
 
@@ -9842,35 +9484,7 @@ median
 
 <li>
 90% Line - 90% of the samples took no more than this time.
-The remaining samples took at least as long as this. (90
-<sup>
-th
-</sup>
- 
-<a href="glossary.html#Percentile">
-percentile
-</a>
-)
-</li>
-
-
-<li>
-95% Line - 95% of the samples took no more than this time.
-The remaining samples took at least as long as this. (95
-<sup>
-th
-</sup>
- 
-<a href="glossary.html#Percentile">
-percentile
-</a>
-)
-</li>
-
-
-<li>
-99% Line - 99% of the samples took no more than this time.
-The remaining samples took at least as long as this. (99
+The remaining samples at least as long as this. (90
 <sup>
 th
 </sup>
@@ -9924,7 +9538,7 @@ Times are in milliseconds.
 
 
 <p><b>Control Panel</b></p>
-<div align="center"><img width='1140' height='266' src="../../docs/images/screenshots/aggregate_report.png"/></div>
+<div align="center"><img width='784' height='287' src="../../docs/images/screenshots/aggregate_report.png"/></div>
 <div align="center">
 
 
@@ -9932,7 +9546,7 @@ Times are in milliseconds.
 
     The figure below shows an example of selecting the "Include group name" checkbox.
 
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='1140' height='276' src="../../docs/images/screenshots/aggregate_report_grouped.png"/><br>
+<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='784' height='287' src="../../docs/images/screenshots/aggregate_report_grouped.png"/><br>
 <font size="-1">Sample "Include group name" display
 </font></td></tr></table></p>
 
@@ -10125,7 +9739,7 @@ The aggregate graph is similar to the aggregate report. The primary
 difference is the aggregate graph provides an easy way to generate bar graphs and save
 the graph as a PNG file.
 <p><b>Control Panel</b></p>
-<div align="center"><img width='1132' height='872' src="../../docs/images/screenshots/aggregate_graph.png"/></div>
+<div align="center"><img width='893' height='713' src="../../docs/images/screenshots/aggregate_graph.png"/></div>
 <div align="center">
 
 
@@ -10133,7 +9747,7 @@ the graph as a PNG file.
 
     The figure below shows an example of settings to draw this graph.
 
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='1147' height='420' src="../../docs/images/screenshots/aggregate_graph_settings.png"/><br>
+<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='900' height='442' src="../../docs/images/screenshots/aggregate_graph_settings.png"/><br>
 <font size="-1">Aggregate graph settings
 </font></td></tr></table></p>
 
@@ -10325,7 +9939,11 @@ If many samples exist for the same timestamp, the mean value is displayed.
 </div>
 <p>
 <i>
-Please note: All this parameters are saved in JMeter .jmx file.
+Please note: All this parameters 
+<b>
+aren't
+</b>
+ saved in JMeter jmx script.
 </i>
 </p>
 <p>
@@ -10867,7 +10485,7 @@ Times are in milliseconds.
 
 
 <p><b>Control Panel</b></p>
-<div align="center"><img width='926' height='324' src="../../docs/images/screenshots/summary_report.png"/></div>
+<div align="center"><img width='784' height='287' src="../../docs/images/screenshots/summary_report.png"/></div>
 <div align="center">
 
 
@@ -10875,7 +10493,7 @@ Times are in milliseconds.
 
     The figure below shows an example of selecting the "Include group name" checkbox.
 
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='923' height='325' src="../../docs/images/screenshots/summary_report_grouped.png"/><br>
+<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='784' height='287' src="../../docs/images/screenshots/summary_report_grouped.png"/><br>
 <font size="-1">Sample "Include group name" display
 </font></td></tr></table></p>
 
@@ -11223,7 +10841,7 @@ For details, see
 This test element can be placed anywhere in the test plan.
 Generates a summary of the test run so far to the log file and/or 
 standard output. Both running and differential totals are shown.
-Output is generated every n seconds (default 30 seconds) on the appropriate
+Output is generated every n seconds (default 3 minutes) on the appropriate
 time boundary, so that multiple test runs on the same time will be synchronised.
 See jmeter.properties file for the summariser configuration items:
 
@@ -11234,7 +10852,7 @@ See jmeter.properties file for the summariser configuration items:
 #summariser.name=summary
 #
 # interval between summaries (in seconds) default 3 minutes
-#summariser.interval=30
+#summariser.interval=180
 #
 # Write messages to log file
 #summariser.log=true
@@ -11261,31 +10879,16 @@ label =   806 in  91.6s =    8.8/s Avg:  1130 Min:    47 Max:  1250 Err:     0 (
 
 The "label" is the the name of the element.
 The "+" means that the line is a delta line, i.e. shows the changes since the last output.
-<br>
-
-
 The "=" means that the line is a totals line, i.e. it shows the running total.
-<br>
-
-
 Entries in the jmeter log file also include time-stamps.
 The example "806 in  91.6s =    8.8/s" means that there were 806 samples recorded in 91.6 seconds,
 and that works out at 8.8 samples per second.
-<br>
-
-
 The Avg (Average), Min(imum) and Max(imum) times are in milliseconds.
-<br>
-
-
 "Err" means number of errors (also shown as percentage).
-<br>
-
-
 The last two lines will appear at the end of a test.
 They will not be synchronised to the appropriate time boundary.
 Note that the initial and final deltas may be for less than the interval (in the example above this is 30 seconds).
-The first delta will generally be lower, as JMeter synchronizes to the interval boundary.
+The first delta will generally be lower, as JMeter synchronises to the interval boundary.
 The last delta will be lower, as the test will generally not finish on an exact interval boundary.
 
 <p>
@@ -11298,17 +10901,6 @@ by using suitable labels and adding the summarisers to appropriate parts of the 
 
 </p>
 
-
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-In Non-GUI mode by default a Generate Summary Results listener named "summariser" is configured, if you have already added one to your Test Plan, ensure you name it differently 
-otherwise results will be accumulated under this label (summary) leading to wrong results (sum of total samples + samples located under the Parent of Generate Summary Results listener).
-This is not a bug but a design choice allowing to summarize across thread groups.
-
-</td></tr>
-</table>
-</p>
 
     
 <p><b>Control Panel</b></p>
@@ -11364,146 +10956,6 @@ Yes
 </tr>
 </table>
 </p>
-</td></tr>
-<tr><td><br></td></tr>
-</table>
-<hr>
-<table border="0" cellspacing="0" cellpadding="2">
-<tr><td>
-<font face="arial,helvetica,sanserif">
-<h3>
-<a name="Backend_Listener">18.3.21 Backend Listener</a>
-</h3>
-</font>
-</td></tr>
-<tr><td>
-
-The backend listener is an Asynchronous listener that enables you to plug custom implementations of 
-<a href="../api/org/apache/jmeter/visualizers/backend/BackendListenerClient.html">
-BackendListenerClient
-</a>
-.
-By default, a Graphite implementation is provided.
-
-<p><b>Control Panel</b></p>
-<div align="center"><img width='902' height='341' src="../../docs/images/screenshots/backend_listener.png"/></div>
-<p>
-<b>Parameters</b>
-<table border="1" cellspacing="0" cellpadding="2">
-<tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
-<tr>
-<td>Name</td>
-<td>Descriptive name for this element that is shown in the tree.
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>Backend Listener implementation</td>
-<td>Class of the BackendListenerClient implementation.
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>Async Queue size</td>
-<td>Size of the queue that holds the SampleResults while they are processed asynchronously.
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>Parameters</td>
-<td>Parameters of the BackendListenerClient implementation.
-</td>
-<td>
-Yes
-</td>
-</tr>
-</table>
-</p>
-<p>
-The following parameters apply to the 
-<b>
-GraphiteBackendListenerClient
-</b>
- implementation:
-</p>
-<p>
-<b>Parameters</b>
-<table border="1" cellspacing="0" cellpadding="2">
-<tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
-<tr>
-<td>graphiteMetricsSender</td>
-<td>org.apache.jmeter.visualizers.backend.graphite.TextGraphiteMetricsSender or org.apache.jmeter.visualizers.backend.graphite.PickleGraphiteMetricsSender
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>graphiteHost</td>
-<td>Graphite or InfluxDB (with Graphite plugin enabled) server host
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>graphitePort</td>
-<td>Graphite or InfluxDB (with Graphite plugin enabled) server port, defaults to 2003. Note PickleGraphiteMetricsSender (port 2004) can only talk to Graphite server.
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>rootMetricsPrefix</td>
-<td>Prefix of metrics sent to backend. Defaults to "jmeter."
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>summaryOnly</td>
-<td>Only send a summary with no detail. Defaults to true.
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>samplersList</td>
-<td>Semicolon separated list of samplers for which you want to report metrics to backend.
-</td>
-<td>
-Yes
-</td>
-</tr>
-<tr>
-<td>percentiles</td>
-<td>The percentiles you want to send to backend. List must be semicolon separated.
-</td>
-<td>
-Yes
-</td>
-</tr>
-</table>
-</p>
-<p>
-Read 
-<a href="realtime-results.html">
-this
-</a>
- for more details.
-</p>
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='1265' height='581' src="../../docs/images/screenshots/grafana_dashboard.png"/><br>
-<font size="-1">Grafana dashboard
-</font></td></tr></table></p>
 </td></tr>
 <tr><td><br></td></tr>
 </table>
@@ -11837,112 +11289,7 @@ Yes
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="DNS_Cache_Manager">18.4.3 DNS Cache Manager</a>
-</h3>
-</font>
-</td></tr>
-<tr><td>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>DNS Cache Manager is designed for using in the root of Thread Group or Test Plan. Do not place it as child element of particular HTTP Sampler
-    
-</td></tr>
-</table>
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>DNS Cache Manager working only with the HTTP request using HTTPClient4 implementation.
-</td></tr>
-</table>
-</p>
-<p>
-The DNS Cache Manager element allows to test applications, which have several servers behind load balancers (CDN, etc), 
-    when user receives content from different IP's. By default JMeter uses JVM DNS cache. That's why
-    only one server from the cluster receives load. DNS Cache Manager resolves name for each thread separately each iteration and
-    saves results of resolving to its internal DNS Cache, which independent from both JVM and OS DNS caches.
-    
-</p>
-
-    
-<p><b>Control Panel</b></p>
-<div align="center"><img width='712' height='387' src="../../docs/images/screenshots/dns-cache-manager.png"/></div>
-<p>
-<b>Parameters</b>
-<table border="1" cellspacing="0" cellpadding="2">
-<tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
-<tr>
-<td>Name</td>
-<td>Descriptive name for this element that is shown in the tree. 
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Clear cache each Iteration</td>
-<td>If selected, DNS cache of every  Thread is cleared each time new iteration is started.
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Use system DNS resolver</td>
-<td>System DNS resolver will be used. For correct work edit
-       $JAVA_HOME/jre/lib/security/java.security and add 
-<pre>
-networkaddress.cache.ttl=0
-</pre>
- 
-    
-</td>
-<td>
-N/A
-</td>
-</tr>
-<tr>
-<td>Use custom DNS resolver</td>
-<td>Custom DNS resolver(from dnsjava library) will be used.
-</td>
-<td>
-N/A
-</td>
-</tr>
-<tr>
-<td>Hostname or IP address</td>
-<td>List of DNS servers to use. If empty, network configuration DNS will used.
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Add Button</td>
-<td>Add an entry to the DNS servers table.
-</td>
-<td>
-N/A
-</td>
-</tr>
-<tr>
-<td>Delete Button</td>
-<td>Delete the currently selected table entry.
-</td>
-<td>
-N/A
-</td>
-</tr>
-</table>
-</p>
-</td></tr>
-<tr><td><br></td></tr>
-</table>
-<hr>
-<table border="0" cellspacing="0" cellpadding="2">
-<tr><td>
-<font face="arial,helvetica,sanserif">
-<h3>
-<a name="HTTP_Authorization_Manager">18.4.4 HTTP Authorization Manager</a>
+<a name="HTTP_Authorization_Manager">18.4.3 HTTP Authorization Manager</a>
 </h3>
 </font>
 </td></tr>
@@ -11966,12 +11313,7 @@ transmits the login information when it encounters this type of page.
 
 <p>
 
-The Authorisation headers may not be shown in the Tree View Listener "Request" tab.
-The Java implementation does pre-emptive authentication, but it does not
-return the Authorization header when JMeter fetches the headers.
-The Commons HttpClient (3.1) implementation defaults to pre-emptive and the header will be shown.
-The HttpComponents implementation does not do pre-emptive auth 
-(it is supported by the library but JMeter does not enable it)
+The Authorisation headers are not shown in the Tree View Listener.
 
 </p>
 
@@ -12167,86 +11509,20 @@ To configure Kerberos you need to setup at least two JVM system properties:
 
     
 <li>
-<code>
 -Djava.security.krb5.conf=krb5.conf
-</code>
 </li>
 
     
 <li>
-<code>
 -Djava.security.auth.login.config=jaas.conf
-</code>
 </li>
 
 
 </ul>
 
-You can also configure those two properties in the file 
-<em>
-bin/system.properties
-</em>
-.
-Look at the two sample configuration files (
-<em>
-krb5.conf
-</em>
- and 
-<em>
-jaas.conf
-</em>
-) located in the jmeter 
-<em>
-bin
-</em>
- folder
-for references to more documentation, and tweak them to match your Kerberos configuration.
-
-</p>
-<p>
-
-When generating a SPN for Kerberos SPNEGO authentication IE and Firefox will omit the port number
-from the url. Chrome has an option (
-<code>
---enable-auth-negotiate-port
-</code>
-) to include the port
-number if it differs from the standard ones (
-<code>
-80
-</code>
- and 
-<code>
-443
-</code>
-). That behavior
-can be emulated by setting the following jmeter property as below.
-
-</p>
-<p>
-
-In 
-<em>
-jmeter.properties
-</em>
- or 
-<em>
-user.properties
-</em>
-, set:
-
-<ul>
-
-
-<li>
-<code>
-kerberos.spnego.strip_port=false
-</code>
-</li>
-
-
-</ul>
-
+You can also configure those two properties in file bin/system.properties.
+Look at the two sample configuration files (krb5.conf and jaas.conf) located in the jmeter bin folder for references to more documentation, and tweak them to match 
+your Kerberos configuration.
 
 </p>
 <br>
@@ -12341,18 +11617,22 @@ be able to run it.  However, you can use it as a reference in constructing your 
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="HTTP_Cache_Manager">18.4.5 HTTP Cache Manager</a>
+<a name="HTTP_Cache_Manager">18.4.4 HTTP Cache Manager</a>
 </h3>
 </font>
 </td></tr>
 <tr><td>
+<p>
+<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
+<tr><td>This is a new element, and is liable to change
+</td></tr>
+</table>
+</p>
 
 
 <p>
 
-The HTTP Cache Manager is used to add caching functionality to HTTP requests within its scope to simulate browser cache feature.
-Each Virtual User thread has its own Cache. By default, Cache Manager will store up to 5000 items in cache per Virtual User thread, using LRU algorithm. 
-Use property "maxSize" to modify this value. Note that the more you increase this value the more HTTP Cache Manager will consume memory, so be sure to adapt -Xmx option accordingly.
+The HTTP Cache Manager is used to add caching functionality to HTTP requests within its scope.
 
 </p>
 
@@ -12380,6 +11660,14 @@ as specified in
 RFC 2616
 </a>
  section 13.2.4. using Last-Modified time and response Date.
+
+</p>
+
+
+<p>
+
+By default, Cache Manager will store up to 5000 items in cache using LRU algorithm. Use property to modify this value.
+Note that the more you increase this value the more HTTP Cache Manager will consume memory, so be sure to adapt -Xmx option.
 
 </p>
 
@@ -12444,7 +11732,7 @@ Yes
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="HTTP_Cookie_Manager">18.4.6 HTTP Cookie Manager</a>
+<a name="HTTP_Cookie_Manager">18.4.4 HTTP Cookie Manager</a>
 </h3>
 </font>
 </td></tr>
@@ -12632,7 +11920,7 @@ N/A
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="HTTP_Request_Defaults">18.4.7 HTTP Request Defaults</a>
+<a name="HTTP_Request_Defaults">18.4.5 HTTP Request Defaults</a>
 </h3>
 </font>
 </td></tr>
@@ -12689,7 +11977,7 @@ No
 </tr>
 <tr>
 <td>Connect Timeout</td>
-<td>Connection Timeout. Number of milliseconds to wait for a connection to open.
+<td>Connection Timeout. Number of milliseconds to wait for a connection to open. Requires Java 1.5 or later when using the default Java HTTP implementation.
 </td>
 <td>
 No
@@ -12697,7 +11985,7 @@ No
 </tr>
 <tr>
 <td>Response Timeout</td>
-<td>Response Timeout. Number of milliseconds to wait for a response.
+<td>Response Timeout. Number of milliseconds to wait for a response. Requires Java 1.5 or later when using the default Java HTTP implementation.
 </td>
 <td>
 No
@@ -12860,7 +12148,7 @@ but if the button is on, a later element cannot set it off.
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="HTTP_Header_Manager">18.4.8 HTTP Header Manager</a>
+<a name="HTTP_Header_Manager">18.4.6 HTTP Header Manager</a>
 </h3>
 </font>
 </td></tr>
@@ -12995,7 +12283,7 @@ instead. (see figures 12 and 13).
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="Java_Request_Defaults">18.4.9 Java Request Defaults</a>
+<a name="Java_Request_Defaults">18.4.7 Java Request Defaults</a>
 </h3>
 </font>
 </td></tr>
@@ -13017,7 +12305,7 @@ The Java Request Defaults component lets you set default values for Java testing
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="JDBC_Connection_Configuration">18.4.10 JDBC Connection Configuration</a>
+<a name="JDBC_Connection_Configuration">18.4.8 JDBC Connection Configuration</a>
 </h3>
 </font>
 </td></tr>
@@ -13350,7 +12638,7 @@ jdbc:derby://server[:port]/databaseName[;URLAttributes=value[;...]]
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="Keystore_Configuration">18.4.11 Keystore Configuration</a>
+<a name="Keystore_Configuration">18.4.9 Keystore Configuration</a>
 </h3>
 </font>
 </td></tr>
@@ -13485,7 +12773,7 @@ You use either HTTPClient 3.1 or 4 implementations for HTTP Request
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="Login_Config_Element">18.4.12 Login Config Element</a>
+<a name="Login_Config_Element">18.4.10 Login Config Element</a>
 </h3>
 </font>
 </td></tr>
@@ -13535,7 +12823,7 @@ No
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="LDAP_Request_Defaults">18.4.13 LDAP Request Defaults</a>
+<a name="LDAP_Request_Defaults">18.4.11 LDAP Request Defaults</a>
 </h3>
 </font>
 </td></tr>
@@ -13557,7 +12845,7 @@ The LDAP Request Defaults component lets you set default values for LDAP testing
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="LDAP_Extended_Request_Defaults">18.4.14 LDAP Extended Request Defaults</a>
+<a name="LDAP_Extended_Request_Defaults">18.4.12 LDAP Extended Request Defaults</a>
 </h3>
 </font>
 </td></tr>
@@ -13579,7 +12867,7 @@ The LDAP Extended Request Defaults component lets you set default values for ext
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="TCP_Sampler_Config">18.4.15 TCP Sampler Config</a>
+<a name="TCP_Sampler_Config">18.4.13 TCP Sampler Config</a>
 </h3>
 </font>
 </td></tr>
@@ -13705,7 +12993,7 @@ No
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="User_Defined_Variables">18.4.16 User Defined Variables</a>
+<a name="User_Defined_Variables">18.4.14 User Defined Variables</a>
 </h3>
 </font>
 </td></tr>
@@ -13833,7 +13121,7 @@ No
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="Random_Variable">18.4.17 Random Variable</a>
+<a name="Random_Variable">18.4.15 Random Variable</a>
 </h3>
 </font>
 </td></tr>
@@ -13949,7 +13237,7 @@ Yes
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="Counter">18.4.18 Counter</a>
+<a name="Counter">18.4.16 Counter</a>
 </h3>
 </font>
 </td></tr>
@@ -14067,7 +13355,7 @@ No
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="Simple_Config_Element">18.4.19 Simple Config Element</a>
+<a name="Simple_Config_Element">18.4.17 Simple Config Element</a>
 </h3>
 </font>
 </td></tr>
@@ -14120,7 +13408,7 @@ Yes
 <tr><td>
 <font face="arial,helvetica,sanserif">
 <h3>
-<a name="MongoDB_Source_Config">18.4.20 MongoDB Source Config</a>
+<a name="MongoDB_Source_Config">18.4.18 MongoDB Source Config</a>
 </h3>
 </font>
 </td></tr>
@@ -14142,31 +13430,23 @@ MongoDBHolder
 
      
     
-<div align="left">
-<table cellspacing="4" cellpadding="0" border="0">
-<tr>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-<tr>
-<td bgcolor="#023264" width="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#ffffff"><pre>
-import com.mongodb.DB;
-import org.apache.jmeter.protocol.mongodb.config.MongoDBHolder;
-DB db = MongoDBHolder.getDBFromSource(&quot;value of property MongoDB Source&quot;,
-            &quot;value of property Database Name&quot;);
-...
-    </pre></td>
-<td bgcolor="#023264" width="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-<tr>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-</table>
-</div>
+<code>
+
+    import com.mongodb.DB;
+<br>
+
+
+    import org.apache.jmeter.protocol.mongodb.config.MongoDBHolder;
+<br>
+
+
+    DB db = MongoDBHolder.getDBFromSource("value of property MongoDB Source", "value of property Database Name");
+<br>
+
+
+    ...
+    
+</code>
 
     
 <p><b>Control Panel</b></p>
@@ -14195,12 +13475,9 @@ Yes
 <td>MongoDB Source</td>
 <td>The name of the variable the connection is tied to.  
         
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>Each name must be different. If there are two configuration elements using the same name, only one will be saved.
-</td></tr>
-</table>
-</p>
+<b>
+Each name must be different. If there are two configuration elements using the same name, only one will be saved.
+</b>
 
         
 </td>
@@ -14488,13 +13765,13 @@ prev.getSubResults()
     The default is to apply the assertion to the main sample only.
     If the Assertion supports this option, then there will be an entry on the GUI which looks like the following:
     
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='658' height='54' src="../../docs/images/screenshots/assertion/assertionscope.png"/><br>
+<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='533' height='55' src="../../docs/images/screenshots/assertion/assertionscope.png"/><br>
 <font size="-1">Assertion Scope
 </font></td></tr></table></p>
 
     or the following
     
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='841' height='55' src="../../docs/images/screenshots/assertion/assertionscopevar.png"/><br>
+<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='756' height='55' src="../../docs/images/screenshots/assertion/assertionscopevar.png"/><br>
 <font size="-1">Assertion Scope
 </font></td></tr></table></p>
 
@@ -14611,77 +13888,17 @@ extended regular expression
 </p>
 
 
-<dl>
+<pre>
 
+    (?i) - ignore case
+    (?s) - treat target as single line, i.e. "." matches new-line
+    (?is) - both the above
+    These can be used anywhere within the expression and remain in effect until overriden.  e.g.
+    (?i)apple(?-i) Pie - matches "ApPLe Pie", but not "ApPLe pIe"
+    (?s)Apple.+?Pie - matches Apple followed by Pie, which may be on a subsequent line.
+    Apple(?s).+?Pie - same as above, but it's probably clearer to use the (?s) at the start.  
 
-<dt>
-<code>
-(?i)
-</code>
-</dt>
-<dd>
-ignore case
-</dd>
-
-
-<dt>
-<code>
-(?s)
-</code>
-</dt>
-<dd>
-treat target as single line, i.e. "." matches new-line
-</dd>
-
-
-<dt>
-<code>
-(?is)
-</code>
-</dt>
-<dd>
-both the above
-</dd>
-
-
-</dl>
-
-These can be used anywhere within the expression and remain in effect until overriden.  e.g.
-
-<dl>
-
-
-<dt>
-<code>
-(?i)apple(?-i) Pie
-</code>
-</dt>
-<dd>
-matches "ApPLe Pie", but not "ApPLe pIe"
-</dd>
-
-
-<dt>
-<code>
-(?s)Apple.+?Pie
-</code>
-</dt>
-<dd>
-matches Apple followed by Pie, which may be on a subsequent line.
-</dd>
-
-
-<dt>
-<code>
-Apple(?s).+?Pie
-</code>
-</dt>
-<dd>
-same as above, but it's probably clearer to use the (?s) at the start.
-</dd>
-
-
-</dl>
+</pre>
 
 
 
@@ -16472,32 +15689,6 @@ No
 Yes
 </td>
 </tr>
-<tr>
-<td>Timeout in milliseconds</td>
-<td>If set to 0, Timer will wait for the number of threads to reach the value in "Number of Simultaneous Users to Group", if superior to 0, then timer will wait at max "Timeout in milliseconds" if number of Threads does not reach if ater the timeout interval the number of users waiting is not reached, timer will stop waiting. Defaults to 0
-</td>
-<td>
-No
-</td>
-</tr>
-</table>
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-If timeout in milliseconds is set to 0 and number of threads never reaches "Number of Simultaneous Users to Group by" then Test will pause infinitely.
-Only a forced stop will stop it. Setting Timeout in milliseconds is an option to consider in this case.
-
-</td></tr>
-</table>
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-Synchronizing timer blocks only within one JVM, so if using Distributed testing ensure you never set "Number of Simultaneous Users to Group by" to a value superior to the number of users
-of its containing Thread group considering 1 injector only.
-
-</td></tr>
 </table>
 </p>
 </td></tr>
@@ -16973,16 +16164,6 @@ The target sampler cannot contain parameters that are not in the response links.
 </td></tr>
 </table>
 </p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-If using distributed testing, ensure you switch mode (see jmeter.properties) so that it's not a stripping one, see 
-<a href="https://issues.apache.org/bugzilla/show_bug.cgi?id=56376">Bug 56376</a>
-
-
-</td></tr>
-</table>
-</p>
 <a name="spider_example"/>
 <p><b>Spidering Example</b></p>
 
@@ -17079,7 +16260,7 @@ Clever users will even determine that this modifier can be used to grab values t
 
 
 <p><b>Control Panel</b></p>
-<div align="center"><img width='579' height='239' src="../../docs/images/screenshots/url_rewriter.png"/></div>
+<div align="center"><img width='609' height='215' src="../../docs/images/screenshots/url_rewriter.png"/></div>
 <p>
 <b>Parameters</b>
 <table border="1" cellspacing="0" cellpadding="2">
@@ -17137,26 +16318,6 @@ No
 Yes
 </td>
 </tr>
-<tr>
-<td>URL Encode</td>
-<td>
-        URL Encode value when writing parameter
-        
-</td>
-<td>
-No
-</td>
-</tr>
-</table>
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-If using distributed testing, ensure you switch mode (see jmeter.properties) so that it's not a stripping one, see 
-<a href="https://issues.apache.org/bugzilla/show_bug.cgi?id=56376">Bug 56376</a>
-.
-
-</td></tr>
 </table>
 </p>
 </td></tr>
@@ -18050,9 +17211,9 @@ Yes
 </td>
 </tr>
 <tr>
-<td>Field to check</td>
+<td>Response Field to check</td>
 <td>
-        The following fields can be checked:
+        The following response fields can be checked:
         
 <ul>
 
@@ -18085,7 +17246,7 @@ Body as a Document - the extract text from various type of documents via Apache 
         
 <p>
 <table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>Note that the Body as a Document option can impact performances, so ensure it is Ok for your test
+<tr><td>Note that Body as a Document option can impact performances, so ensure it is Ok for your test
 </td></tr>
 </table>
 </p>
@@ -18095,12 +17256,7 @@ Body as a Document - the extract text from various type of documents via Apache 
 
         
 <li>
-Request Headers - may not be present for non-HTTP samples
-</li>
-
-        
-<li>
-Response Headers - may not be present for non-HTTP samples
+Headers - may not be present for non-HTTP samples
 </li>
 
         
@@ -19802,13 +18958,31 @@ No
 
 <p>
 The WorkBench simply provides a place to temporarily store test elements while not in use, for copy/paste purposes, or any other purpose you desire. 
-When you save your test plan, WorkBench items are not saved with it by default unless you check "Save Workbench" option.
+When you save your test plan, WorkBench items are not saved with it. 
 Your WorkBench can be saved independently, if you like (right-click on WorkBench and choose Save).
 </p>
 
 
 <p>
 Certain test elements are only available on the WorkBench:
+</p>
+
+
+<p>
+<b>Parameters</b>
+<table border="1" cellspacing="0" cellpadding="2">
+<tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
+<tr>
+<td>Save WorkBench</td>
+<td>
+                Allow to save the WorkBench's elements into the JMX file.
+        
+</td>
+<td>
+No
+</td>
+</tr>
+</table>
 </p>
 
 
@@ -19831,24 +19005,6 @@ Certain test elements are only available on the WorkBench:
 
 
 </ul>
-
-
-<p>
-<b>Parameters</b>
-<table border="1" cellspacing="0" cellpadding="2">
-<tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
-<tr>
-<td>Save WorkBench</td>
-<td>
-                Allow to save the WorkBench's elements into the JMX file.
-        
-</td>
-<td>
-No
-</td>
-</tr>
-</table>
-</p>
 
 
 <p><b>Control Panel</b></p>
@@ -20090,7 +19246,7 @@ proxyserver.jks
 <p>
 
 With versions of JMeter up to 2.9, it used a single certificate for all target servers.
-[Likewise if JMeter is not being run under Java 7 or later]
+[Likewise if JMeter is not being run under Java 1.7 or later]
 This certificate is not one of the certificates that browsers normally trust, and will not be for the
 correct host.
 <br>
@@ -20103,31 +19259,27 @@ As a consequence:
 
 <li>
 The browser should display a dialogue asking if you want to accept the certificate or not. For example:
+<br>
 
-<div align="left">
-<table cellspacing="4" cellpadding="0" border="0">
-<tr>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-<tr>
-<td bgcolor="#023264" width="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#ffffff"><pre>
-1) The server's name &quot;www.example.com&quot; does not match the certificate's name
-   &quot;JMeter Proxy (DO NOT TRUST)&quot;. Somebody may be trying to eavesdrop on you.
-2) The certificate for &quot;JMeter Proxy (DO NOT TRUST)&quot; is signed by the unknown Certificate Authority
-   &quot;JMeter Proxy (DO NOT TRUST)&quot;. It is not possible to verify that this is a valid certificate.
-</pre></td>
-<td bgcolor="#023264" width="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-<tr>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-<td bgcolor="#023264" width="1" height="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-</tr>
-</table>
-</div>
+
+
+<code>
+
+1) The server's name "www.example.com" does not match the certificate's name
+   "JMeter Proxy (DO NOT TRUST)". Somebody may be trying to eavesdrop on you.
+<br>
+
+
+2) The certificate for "JMeter Proxy (DO NOT TRUST)" is signed by the unknown Certificate Authority
+   "JMeter Proxy (DO NOT TRUST)". It is not possible to verify that this is a valid certificate.
+<br>
+
+
+
+</code>
+ 
+<br>
+
 
 You will need to accept the certificate in order to allow the JMeter Proxy to intercept the SSL traffic in order to
 record it.
@@ -20549,7 +19701,7 @@ Yes
 </tr>
 <tr>
 <td>Regex Matching</td>
-<td>Use Regex Matching when replacing variables? If checked replacement will use word boundaries, ie it will only replace word matching values of variable, not part of a word. A word boundary follows Perl5 definition and is equivalent to \b. More information below in the paragraph about "User Defined Variable replacement".
+<td>Use Regex Matching when replacing variables? If checked replacement will use word boundaries, ie it will only replace word matching values of variable, not part of a word. A word boundary follows Perl5 definition and is equivalent to \b.
 </td>
 <td>
 Yes
@@ -20653,23 +19805,6 @@ Any requests that match one or more Exclude pattern are
 not
 </i>
  recorded
-</b>
-.
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>Notify Child Listeners of filtered samplers</td>
-<td>Notify Child Listeners of filtered samplers
-        
-<b>
-Any response that match one or more Exclude pattern is 
-<i>
-not
-</i>
- delivered to Child Listeners (View Results Tree)
 </b>
 .
 </td>
@@ -20931,199 +20066,30 @@ place User Defined Variables directly within the HTTP(S) Test Script Recorder to
 </p>
 <p>
 Replacement by Variables: by default, the Proxy server looks for all occurences of UDV values. 
-If you define the variable 
-<code>
-WEB
-</code>
- with the value 
-<code>
-www
-</code>
-, for example,
-the string 
-<code>
-www
-</code>
- will be replaced by 
-<code>
-${WEB}
-</code>
- wherever it is found.
+If you define the variable "WEB" with the value "www", for example, 
+the string "www" will be replaced by ${WEB} wherever it is found.
 To avoid this happening everywhere, set the "Regex Matching" check-box.
-This tells the proxy server to treat values as Regexes (using the perl5 compatible regex matchers provided by ORO).
-</p>
-<p>
-If "Regex Matching" is selected every variable will be compiled into a perl compatible regex enclosed in
+This tells the proxy server to treat values as Regexes (using ORO).
 
-<code>
-\b(
-</code>
- and 
-<code>
-)\b
-</code>
-. That way each match will start and end at a word boundary.
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>Note that the boundary characters are not part of the matching group, e.g. 
-<code>
-n.*
-</code>
- to match 
-<code>
-name
-</code>
- out
-of 
-<code>
-You can call me 'name'
-</code>
-.
-</td></tr>
-</table>
-</p>
-<p>
-If you don't want your regex to be enclosed with those boundary matchers, you have to enclose your
-regex within parens, e.g 
-<code>
-('.*?')
-</code>
- to match 
-<code>
-'name'
-</code>
- out of 
-<code>
-You can call me 'name'
-</code>
-.
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-The variables will be checked in random order. So ensure, that the potential matches don't overlap.
-Overlapping matchers would be 
-<code>
-.*
-</code>
- (which matches anything) and 
-<code>
-www
-</code>
- (which
-matches 
-<code>
-www
-</code>
- only). Non-overlapping matchers would be 
-<code>
-a+
-</code>
- (matches a sequence
-of 
-<code>
-a
-</code>
-'s) and 
-<code>
-b+
-</code>
- (matches a sequence of 
-<code>
-b
-</code>
-'s).
+<br>
 
-</td></tr>
-</table>
-</p>
-<p>
-If you want to match a whole string only, enclose it in 
-<code>
-(^
-</code>
- and 
-<code>
-$)
-</code>
-, e.g. 
-<code>
-(^thus$)
-</code>
-.
-The parens are neccessary, since the normally added boundary characters will prevent 
-<code>
-^
-</code>
- and
 
-<code>
-$
-</code>
- to match.
-</p>
-<p>
-If you want to match 
-<code>
-/images
-</code>
- at the start of a string only, use the value 
-<code>
-(^/images)
-</code>
-.
-Jakarta ORO also supports zero-width look-ahead, so one can match 
-<code>
-/images/...
-</code>
+If you want to match a whole string only, enclose it in ^$, e.g. "^thus$".
 
-but retain the trailing 
-<code>
-/
-</code>
- in the output by using 
-<code>
-(^/images(?=/))
-</code>
-".
-</p>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-Note that the current version of Jakara ORO does not support look-behind - i.e. 
-<code>
-(?&lt;=...)
-</code>
- or 
-<code>
-(?&lt;!...)
-</code>
-.
+<br>
 
-</td></tr>
-</table>
-</p>
-<p>
-Look out for overlapping matchers. For example the value 
-<code>
-.*
-</code>
- as a regex in a variable named
 
-<code>
-regex
-</code>
- will partly match a previous replaced variable, which will result in something like
+If you want to match /images at the start of a string only, use the value "^/images".
+Jakarta ORO also supports zero-width look-ahead, so one can match /images/... 
+but retain the trailing / in the output by using "^/images(?=/)".
+Note that the current version of Jakara ORO does not support look-behind - i.e. "(?&lt;=...) or (?&lt;!...)".
 
-<code>
-${{regex}
-</code>
-, which is most probably not the desired result.
-</p>
-<p>
+<br>
+
+
 If there are any problems interpreting any variables as patterns, these are reported in jmeter.log,
 so be sure to check this if UDVs are not working as expected.
+
 </p>
 <p>
 When you are done recording your test samples, stop the proxy server (hit the "stop" button).  Remember to reset
@@ -21181,11 +20147,8 @@ Authorization Manager
 </h4>
 <p>
 
-The HTTP(S) Test Script Recorder grabs "Authentication" header, tries to compute the Auth Policy. If Authorization Manager was added to target
-controller manually, HTTP(S) Test Script Recorder will find it and add authorization(matching ones will be removed). Otherwise
-Authorization Manager will be added to target controller with authorization object.
-You may have to fix automatically computed values after recording.
-
+The Proxy server passes on any Authorization headers sent by the browser, but does not save them in the test plan.
+If the site requires Authorization, you will need to add an Authorization Manager and fill it in with the necessary entries.
 
 </p>
 <h4>
@@ -21278,11 +20241,8 @@ No
 <p>
 <table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
 <tr><td>
-Note that you can get more control over the responses by adding an HTTP Header Manager with the following name/value pairs:
+Note that you can get more control on responses by adding an HTTP Header Manager with the following name/value pairs:
 
-</td></tr>
-</table>
-</p>
 <p>
 <b>Parameters</b>
 <table border="1" cellspacing="0" cellpadding="2">
@@ -21317,7 +20277,7 @@ No
 </tr>
 <tr>
 <td>X-ResponseLength</td>
-<td>Size of response, this trims the response to the requested size if that is less than the total size
+<td>Size of response, this enable returning only a substring of Request content
 </td>
 <td>
 No
@@ -21325,7 +20285,7 @@ No
 </tr>
 <tr>
 <td>X-SetHeaders</td>
-<td>Pipe separated list of headers, example:
+<td>Pipe separator list of headers, example:
 <br>
 
  
@@ -21342,41 +20302,10 @@ No
 </tr>
 </table>
 </p>
-<p>
 
-You can also use the following query parameters:
 
-</p>
-<p>
-<b>Parameters</b>
-<table border="1" cellspacing="0" cellpadding="2">
-<tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
-<tr>
-<td>redirect</td>
-<td>Generates a 302 (Temporary Redirect) with the provided location.
-    e.g. ?redirect=/path 
-    
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>status</td>
-<td>Overrides the default status return. e.g. ?status=404 Not Found
-</td>
-<td>
-No
-</td>
-</tr>
-<tr>
-<td>v</td>
-<td>Verbose flag, writes some details to standard output. e.g. first line and redirect location if specified
-</td>
-<td>
-No
-</td>
-</tr>
+
+</td></tr>
 </table>
 </p>
 </td></tr>
@@ -21618,7 +20547,6 @@ Yes
 When using Test Fragment with 
 <a href="../usermanual/component_reference.html#Module_Controller">Module Controller</a>
 , ensure you disable the Test Fragment to avoid the execution of Test Fragment itself.
-This is done by default since JMeter 2.13.
 
 </td></tr>
 </table>
@@ -21679,19 +20607,6 @@ This is done by default since JMeter 2.13.
 
 <p><b>Control Panel</b></p>
 <div align="center"><img width='537' height='289' src="../../docs/images/screenshots/teardown_thread_group.png"/></div>
-<p>
-<table border="1" bgcolor="#bbbb00" width="50%" cellspacing="0" cellpadding="2">
-<tr><td>
-Note that by default it won't run if Test is gracefully shutdown, if you want to make it run in this case, 
-ensure you check option "Run tearDown Thread Groups after shutdown of main threads" on Test Plan element.
-If Test Plan is stopped, tearDown will not run even if option is checked.
-
-</td></tr>
-</table>
-</p>
-<p><table border="0" cellspacing="0" cellpadding="0"><tr><td><img width='1081' height='570' src="../../docs/images/screenshots/tear_down_on_shutdown.png"/><br>
-<font size="-1">Figure 1 - Run tearDown Thread Groups after shutdown of main threads
-</font></td></tr></table></p>
 </td></tr>
 <tr><td><br></td></tr>
 </table>
@@ -21729,12 +20644,12 @@ If Test Plan is stopped, tearDown will not run even if option is checked.
 <tr>
 <td>
 <font color="#525D76" size="-1"><em>
-Copyright &copy; 1999-2015, Apache Software Foundation
+Copyright &copy; 1999-2013, Apache Software Foundation
 </em></font>
 </td>
 <td align="right">
 <font color="#525D76" size="-1"><em>
-$Id: component_reference.xml 1664956 2015-03-08 09:58:02Z milamber $
+$Id: component_reference.xml 1554378 2013-12-31 07:27:24Z milamber $
 </em></font>
 </td>
 </tr>
@@ -21752,7 +20667,6 @@ trademarks of the Apache Software Foundation.
 </body>
 </html>
 <!-- end the processing -->
-
 
 
 
